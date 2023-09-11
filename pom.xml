@@ -94,9 +94,9 @@
 		</dependency>
 		
 	</dependencies>
-	
-	<distributionManagement>
 	<!--
+	<distributionManagement>
+
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
@@ -108,9 +108,9 @@
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
 	      <url>http://172.17.0.2:8081/repository/maven-snapshots/</url>
 	    </snapshotRepository>
-	-->    
-	</distributionManagement>
 	
+	</distributionManagement>
+	-->
 	<build>
 		<finalName>maven-web-application</finalName>
 		
