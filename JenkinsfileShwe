@@ -1,0 +1,73 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'mav12'
+        // SonarQubeScanner 'sonarqube1'
+    }
+    
+    // options {
+    //     timestamps()
+    //     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '44'))
+    // } only keeps 44 build history
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git 'https://github.com/shwez127/maven-web-application.git'
+            }
+        }
+
+        stage('build no') {
+            steps {
+                echo "the build number is: ${env.BUILD_NUMBER}"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh "${tool(name: 'mav12')}/bin/mvn clean package"
+            }
+        }
+        
+
+        stage('SonarQube Analysis') {
+            steps {
+                // Run SonarQube scanner
+                withSonarQubeEnv('sonarqube1') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+        
+        stage('nexus') {
+            steps {
+              sh 'mvn deploy'
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                echo "Build #${env.BUILD_NUMBER} succeeded!"
+                slackSend(
+                    colorCode: 'good',
+                    summary: "Build #${env.BUILD_NUMBER} succeeded!",
+                    channel: '#project'
+                )
+            }
+        }
+        failure {
+            script {
+                echo "Build #${env.BUILD_NUMBER} failed!"
+                slackSend(
+                    color: 'danger',
+                    message: "Build #${env.BUILD_NUMBER} failed!",
+                    channel: '#project'
+                )
+            }
+        }
+        
+    }
+}
