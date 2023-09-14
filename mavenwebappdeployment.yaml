@@ -16,6 +16,10 @@ spec:
       labels:
         app: mavenwebapp
     spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
       containers:
         - name: mavenwebappcontainer
           image: shwetha12712712/maven-aks:latest
