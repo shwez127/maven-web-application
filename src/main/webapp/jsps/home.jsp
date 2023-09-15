@@ -45,7 +45,7 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 <hr>
 <hr>
 <p align=center>okay bye</p>
-<p align=center><small>email id<a href="shwethab@gmail.com">Bengaluru</a> </small></p>
+<p align=center><small>email id<a href="com">Bengaluru</a> </small></p>
 
 </body>
 </html>
