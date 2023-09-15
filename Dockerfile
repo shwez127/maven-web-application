@@ -5,4 +5,6 @@ FROM tomcat:9.0-jdk11
 WORKDIR /usr/local/tomcat/webapps
 
 # Copy the WAR file from your Jenkins workspace to the Docker build context
-COPY target/maven-web-application.war maven-web-application.war
+ADD target/maven-web-application.war maven-web-application.war
+
+CMD ["catalina.sh", "run"]
