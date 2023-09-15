@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mavenwebappdeployment1
+  name: mavenwebappdeployment
   namespace: jenkins-aks-ns
 spec:
   revisionHistoryLimit: 10
@@ -41,7 +41,7 @@ metadata:
   namespace: jenkins-aks-ns
 spec:
   selector:
-    app: mavenwebapp1
+    app: mavenwebapp
   type: NodePort
   ports:
   - port: 80
