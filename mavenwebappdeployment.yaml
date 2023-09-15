@@ -5,7 +5,7 @@ metadata:
   namespace: jenkins-aks-ns
 spec:
   revisionHistoryLimit: 10
-  replicas: 2
+  replicas: 1
   strategy:
     type: Recreate
   selector:
