@@ -5,4 +5,4 @@ FROM tomcat:9.0-jdk11
 WORKDIR /usr/local/tomcat/webapps
 
 # Copy the WAR file from your Jenkins workspace to the Docker build context
-COPY /var/lib/jenkins/workspace/maven-aks/target/maven-web-application.war maven-web-application.war
+COPY target/maven-web-application.war maven-web-application.war
