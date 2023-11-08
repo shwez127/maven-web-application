@@ -44,7 +44,7 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 <hr>
 <hr>
 <p align=center>okay bye</p>
-<p align=center><small>Copyrights 2022 by <a href="http://mithuntechnologies.com/">Mithun Technologies,Bengaluru</a> </small></p>
+<p align=center><small> <a href="http://mithuntechnologies.com/">Mithun Technologies,Bengaluru</a> </small></p>
 
 </body>
 </html>
