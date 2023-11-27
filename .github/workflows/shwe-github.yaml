@@ -8,7 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env: 
+     DOCKER_USERNAME: shwetha12712712
+     IMAGE_NAME: githubmaven
+     TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBE
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -17,7 +21,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           # username: ${{ secrets.DOCKER_USERNAME }}
-          username: shwetha12712712
+          username: ${{ DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER }}
 
       # - name: Build and Push Docker Image
