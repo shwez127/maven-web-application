@@ -66,6 +66,7 @@ jobs:
   #       with:
   #         manifests: kubernetes/mssql-pv.azure.yaml
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Set up Kubernetes
