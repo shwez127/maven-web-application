@@ -65,7 +65,25 @@ jobs:
   #       uses: Azure/k8s-deploy@v1
   #       with:
   #         manifests: kubernetes/mssql-pv.azure.yaml
-  deploy:
+  # deploy:
+  #   # needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Set up Kubernetes
+  #     uses: azure/k8s-set-context@v1
+  #     with:
+  #       kubeconfig: ${{ secrets.KUBE_CONFIG }}
+  #   # - name: Deploy to Kubernetes
+  #   #   uses: Azure/k8s-deploy@v1
+  #   #   with:
+  #   #     manifests: .github/workflows/mavengithub.yaml
+  #   - name: Deploy to the Kubernetes cluster
+  #       uses: azure/k8s-deploy@v1
+  #       with:
+  #         namespace: shwe
+  #         manifests: |
+  #           .github/workflows/mavengithub.yaml
+   deploy:
     # needs: build
     runs-on: ubuntu-latest
     steps:
@@ -73,16 +91,12 @@ jobs:
       uses: azure/k8s-set-context@v1
       with:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
-    # - name: Deploy to Kubernetes
-    #   uses: Azure/k8s-deploy@v1
-    #   with:
-    #     manifests: .github/workflows/mavengithub.yaml
-    - name: Deploy to the Kubernetes cluster
-        uses: azure/k8s-deploy@v1
-        with:
-          namespace: shwe
-          manifests: |
-            .github/workflows/mavengithub.yaml
+        
+    - name: Switch Kubernetes Context
+      run: kubectl config use-context shwe
+
+    - name: deploy
+      run: kubectl apply -f .github/workflows/mavengithub.yaml
             
 
 
