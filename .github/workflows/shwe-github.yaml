@@ -50,10 +50,12 @@ jobs:
         run: docker push ${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps: 
       - name: Set up Kubernetes
         run: |
+          kubectl config use-context your-context-name
           kubectl config view --minify --namespace=shwe --raw > kubeconfig.yaml
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
 
