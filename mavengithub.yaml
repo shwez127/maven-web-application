@@ -19,7 +19,7 @@ spec:
     spec:   
       containers:
         - name: mavenwebappcontainer
-          image: shwetha12712712/githubmaven
+          image: shwetha12712712/githubmaven::${{ env.TAG }}
           ports:
             - containerPort: 8080
 ---
