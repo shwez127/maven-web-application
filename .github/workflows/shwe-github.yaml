@@ -55,7 +55,7 @@ jobs:
     steps: 
       - name: Set up Kubernetes
         run: |
-          kubectl config use-context your-context-name
+          kubectl config use-context shwe
           kubectl config view --minify --namespace=shwe --raw > kubeconfig.yaml
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
 
